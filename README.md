@@ -161,7 +161,7 @@ it, or archive it — your call. It never leaves your machine.
 | `skills/checkin/SKILL.md` | The `/checkin` skill — how Claude gathers and writes the bag |
 | `skills/claim/SKILL.md` | The `/claim` skill — how Claude finds, reads and presents it |
 | `install.sh` / `install.ps1` | Manual install, if you'd rather not use plugins |
-| `assets/` | The banner and the prompt that regenerates it |
+| `assets/` | The banner, the prompt that regenerates it (`prompts.json` + `generate.py`; needs `OPENAI_API_KEY` and the Frankie404 reference images from the [Robot Friends brand kit](https://github.com/Robot-Friends-Community) in `assets/_refs/`) |
 
 Two skills. That's the point.
 
