@@ -1,6 +1,6 @@
 {
   "name": "baggage-claim",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Baggage Claim — the two-command context handoff for Claude Code, from Robot Friends. /checkin writes your work state to BAGGAGE.md before you clear; /claim picks it up in the next session. The beginner edition of Airport Authority.",
   "author": { "name": "Robot Friends", "url": "https://github.com/Robot-Friends-Community" },
   "repository": "https://github.com/Robot-Friends-Community/baggage-claim",

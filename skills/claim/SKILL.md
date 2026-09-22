@@ -16,7 +16,8 @@ Check, in order:
 3. `HANDOFF-ALLEYOOP.md` in either place (a bag from the older no-look-pass edition — read it the same way)
 
 ```bash
-GIT_ROOT=$(git rev-parse --show-toplevel 2>/dev/null)
+# Outside a git repo GIT_ROOT falls back to the cwd — never the filesystem root.
+GIT_ROOT=$(git rev-parse --show-toplevel 2>/dev/null || pwd)
 for f in BAGGAGE.md "$GIT_ROOT/BAGGAGE.md" HANDOFF-ALLEYOOP.md "$GIT_ROOT/HANDOFF-ALLEYOOP.md"; do
   test -f "$f" && echo "found: $f" && break
 done
