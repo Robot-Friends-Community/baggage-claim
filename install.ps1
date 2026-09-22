@@ -1,38 +1,35 @@
-# No-Look Pass — Install Script (Windows PowerShell)
+# Baggage Claim — manual install (Windows PowerShell). Prefer the plugin install in the README.
 # Usage: .\install.ps1
 
 $claudeDir = if ($env:CLAUDE_DIR) { $env:CLAUDE_DIR } else { "$env:USERPROFILE\.claude" }
-$skillDest = "$claudeDir\skills\no-look-pass"
-$cmdDest   = "$claudeDir\commands"
+$skills = "$claudeDir\skills"
 
 Write-Host ""
-Write-Host "No-Look Pass -- Installer"
-Write-Host "========================="
+Write-Host "Baggage Claim -- installer"
+Write-Host "=========================="
 Write-Host ""
 
-# Check for Claude Code
 if (-not (Test-Path $claudeDir)) {
     Write-Error "Claude Code config directory not found at $claudeDir"
     Write-Error "Make sure Claude Code is installed: https://claude.ai/code"
     exit 1
 }
 
-# Create directories
-New-Item -ItemType Directory -Force "$skillDest\references" | Out-Null
-New-Item -ItemType Directory -Force $cmdDest | Out-Null
+New-Item -ItemType Directory -Force "$skills\checkin", "$skills\claim" | Out-Null
+Copy-Item skills\checkin\SKILL.md "$skills\checkin\"
+Copy-Item skills\claim\SKILL.md "$skills\claim\"
 
-# Copy skill files
-Copy-Item SKILL.md $skillDest\
-Copy-Item references\*.md "$skillDest\references\"
-Copy-Item commands\alleyoop.md $cmdDest\
-Copy-Item commands\slamdunk.md $cmdDest\
+# Clean up the older no-look-pass edition if it's there
+$removed = @()
+foreach ($old in "$skills\no-look-pass", "$claudeDir\commands\alleyoop.md", "$claudeDir\commands\slamdunk.md") {
+    if (Test-Path $old) { Remove-Item -Recurse -Force $old; $removed += $old }
+}
 
 Write-Host "Installed:"
-Write-Host "  $skillDest\SKILL.md"
-Write-Host "  $skillDest\references\*.md"
-Write-Host "  $cmdDest\alleyoop.md"
-Write-Host "  $cmdDest\slamdunk.md"
+Write-Host "  $skills\checkin\SKILL.md"
+Write-Host "  $skills\claim\SKILL.md"
+if ($removed.Count) { Write-Host "Removed the old no-look-pass edition:"; $removed | ForEach-Object { Write-Host "  $_" } }
 Write-Host ""
-Write-Host "Done! Open Claude Code in any project folder and run:"
-Write-Host "  /alleyoop"
+Write-Host "Done. Open Claude Code in any project folder and run:"
+Write-Host "  /checkin"
 Write-Host ""

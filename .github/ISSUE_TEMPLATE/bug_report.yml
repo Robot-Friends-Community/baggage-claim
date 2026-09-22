@@ -1,5 +1,5 @@
 name: Bug Report
-description: Report a bug with no-look-pass-sessions
+description: Report a bug with Baggage Claim
 title: "[Bug]: "
 labels: ["bug", "needs-triage"]
 body:
@@ -28,9 +28,9 @@ body:
       label: Steps to Reproduce
       description: How can we reproduce this?
       placeholder: |
-        1. Run /alleyoop
+        1. Run /checkin
         2. Clear context
-        3. Run /slamdunk
+        3. Run /claim
         4. See error...
     validations:
       required: true

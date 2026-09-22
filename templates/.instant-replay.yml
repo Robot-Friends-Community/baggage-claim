@@ -1,8 +1,0 @@
-enabled: true
-default_mode: auto          # auto | checkpoint | film-session
-lenses:
-  - technical
-  - journey
-  - patterns
-created: "{{TIMESTAMP}}"
-session_count: 0

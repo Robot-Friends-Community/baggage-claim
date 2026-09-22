@@ -1,69 +1,53 @@
-# Contributing to No-Look Pass
+# Contributing to Baggage Claim
 
-Thanks for your interest in contributing to the community edition!
+Thanks for helping keep the small thing small.
 
-## Quick Start
+Baggage Claim is deliberately tiny: two skills, one file. Contributions that make it clearer
+or more reliable are very welcome. Contributions that make it bigger probably belong in
+[Airport Authority](https://github.com/Robot-Friends-Community/airport-authority) instead —
+that's the full edition, and this one stays the beginner edition on purpose.
+
+## Quick start
 
 1. Fork this repo
-2. Install locally using the copy or symlink method (see README)
-3. Make your changes on a feature branch
-4. Test with `/alleyoop` and `/slamdunk` in a real Claude Code session
-5. Submit a PR to the `dev` branch
+2. Point Claude Code at your fork (see below)
+3. Make your change on a feature branch
+4. Try it: run `/checkin`, `/clear`, then `/claim` in a real project
+5. Open a PR against `main`
 
-## Development Setup
+## Trying your changes locally
 
 ```bash
 # Clone your fork
-git clone https://github.com/YOUR-USERNAME/no-look-pass.git
-cd no-look-pass
+git clone https://github.com/YOUR-USERNAME/baggage-claim.git
+cd baggage-claim
 
-# Create a feature branch from dev
-git checkout -b feature/your-feature dev
-
-# Symlink for testing (macOS / Linux)
-mkdir -p ~/.claude/skills/no-look-pass/references ~/.claude/commands
-ln -sf "$(pwd)/SKILL.md" ~/.claude/skills/no-look-pass/SKILL.md
-for f in references/*.md; do
-  ln -sf "$(pwd)/$f" ~/.claude/skills/no-look-pass/$f
-done
-ln -sf "$(pwd)/commands/alleyoop.md" ~/.claude/commands/alleyoop.md
-ln -sf "$(pwd)/commands/slamdunk.md" ~/.claude/commands/slamdunk.md
+# Load it as a local plugin (picks up edits in place)
+claude plugin marketplace add ./
+claude plugin install baggage-claim@baggage-claim
 ```
 
-## What to Contribute
+Or copy the two skills by hand with `bash install.sh` / `.\install.ps1`.
 
-- **New scaffolding integrations** — Jira, Linear, Notion task tracking, etc.
-- **Instant Replay improvements** — new lenses, better auto-detection, richer entry formats
-- **Bug fixes** — unexpected behavior in edge cases
-- **Documentation** — clearer instructions, more examples
-- **Community examples** — sample Instant Replay entries, handoff patterns
+## What to contribute
 
-## Pull Request Process
+- **Clearer wording** in the skills or the README — this is for people who don't read docs
+- **Bug fixes** — a bag that didn't get written, a claim that missed it
+- **Better summaries** — the checkin / claim banners
+- **Translations** of the README
 
-1. Create a feature branch from `dev` (never branch from `main` directly)
-2. Make your changes
-3. Test locally with Claude Code — run actual `/alleyoop` and `/slamdunk` sessions
-4. Update `CHANGELOG.md` with your changes under `## [Unreleased]`
-5. Update `SKILL.md` if you've added new commands or changed behavior
-6. Submit PR to `dev` branch with a clear description
+## What not to contribute here
 
-## Code Style
+- A build log, a recorder, a tome, git hygiene, hooks, fleet views — all of that lives in
+  Airport Authority already. Add it there.
 
-- Keep `SKILL.md` focused — it's the brain, not the encyclopedia. Details go in `references/`
-- Use clear, imperative instructions in command files
-- Document any new fields added to `HANDOFF-ALLEYOOP.md` format
-- Reference files use `references/FILENAME.md` in execution_context blocks (relative, not absolute)
-- No hardcoded paths to user home directories
+## Pull request checklist
 
-## Testing Checklist
-
-Before submitting a PR, verify:
-
-- [ ] `/alleyoop` creates `HANDOFF-ALLEYOOP.md` in the correct location
-- [ ] `/slamdunk` finds and parses the handoff correctly
-- [ ] Instant Replay appends correctly (if you touched that logic)
-- [ ] GSD scaffolding detected correctly (if you have a GSD project to test with)
-- [ ] No absolute paths in command files
+- [ ] `/checkin` writes `BAGGAGE.md` in the project root
+- [ ] `/claim` finds it, shows the summary, and suggests the next action
+- [ ] `/claim` still reads an old `HANDOFF-ALLEYOOP.md` if that's all it finds
+- [ ] No absolute paths, no personal folders
+- [ ] `CHANGELOG.md` updated under `## [Unreleased]`
 
 ## Questions?
 

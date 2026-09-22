@@ -13,9 +13,8 @@
 
 ## Testing
 <!-- How did you test these changes? -->
-- [ ] Tested /alleyoop creates HANDOFF-ALLEYOOP.md correctly
-- [ ] Tested /slamdunk restores context properly
-- [ ] Tested with GSD integration (if applicable)
+- [ ] Tested /checkin writes BAGGAGE.md in the project root
+- [ ] Tested /claim restores it in a fresh session
 
 ## Checklist
 - [ ] My code follows the project style
