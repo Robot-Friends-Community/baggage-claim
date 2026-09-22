@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.0] - 2026-09-22
+
+**no-look-pass becomes Baggage Claim — the beginner edition of Airport Authority.**
+
+### Changed
+- **Renamed** to Baggage Claim. Repo moves to `Robot-Friends-Community/baggage-claim` (GitHub redirects the old URL).
+- **Commands:** `/alleyoop` → `/checkin`, `/slamdunk` → `/claim`.
+- **Handoff file:** `HANDOFF-ALLEYOOP.md` → `BAGGAGE.md`. `/claim` still reads an old `HANDOFF-ALLEYOOP.md` if that's all it finds.
+- Now a Claude Code **plugin** (`claude plugin marketplace add Robot-Friends-Community/baggage-claim`); the copy-by-hand installers remain and clean up the old edition.
+- Each command is a single self-contained skill (`skills/checkin`, `skills/claim`) — no `references/`, no `commands/`.
+- README rewritten in plain language, in the same pattern as DoPA / Airport Authority / Customs Authority, with a new on-model Frankie404 banner.
+
+### Removed
+- **Instant Replay** (the game-film log), its setup wizard, `/alleyoop debrief`, `/alleyoop init-replay`, and `templates/.instant-replay.yml`. That idea grew into Airport Authority's Flight Recorder — use that if you want it.
+- Scaffolding-specific integrations (GSD, planning files, Canon Keeper). `/checkin` still glances at a project's own plan file if one exists.
+
 ## [2.0.0] - 2026-03-03
 
 ### Added

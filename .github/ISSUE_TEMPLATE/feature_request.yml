@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Have an idea to improve no-look-pass-sessions? We'd love to hear it!
+        Have an idea to improve Baggage Claim? We'd love to hear it!
   - type: textarea
     id: problem
     attributes:

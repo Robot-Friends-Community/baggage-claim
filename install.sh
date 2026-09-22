@@ -1,41 +1,37 @@
 #!/usr/bin/env bash
-# No-Look Pass — Install Script (macOS / Linux)
+# Baggage Claim — manual install (macOS / Linux). Prefer the plugin install in the README.
 # Usage: bash install.sh
-
 set -e
 
 CLAUDE_DIR="${CLAUDE_DIR:-$HOME/.claude}"
-SKILL_DEST="$CLAUDE_DIR/skills/no-look-pass"
-CMD_DEST="$CLAUDE_DIR/commands"
+SKILLS="$CLAUDE_DIR/skills"
 
 echo ""
-echo "No-Look Pass — Installer"
-echo "========================"
+echo "Baggage Claim — installer"
+echo "========================="
 echo ""
 
-# Check for Claude Code
 if [ ! -d "$CLAUDE_DIR" ]; then
   echo "ERROR: Claude Code config directory not found at $CLAUDE_DIR"
   echo "       Make sure Claude Code is installed: https://claude.ai/code"
   exit 1
 fi
 
-# Create directories
-mkdir -p "$SKILL_DEST/references"
-mkdir -p "$CMD_DEST"
+mkdir -p "$SKILLS/checkin" "$SKILLS/claim"
+cp skills/checkin/SKILL.md "$SKILLS/checkin/"
+cp skills/claim/SKILL.md "$SKILLS/claim/"
 
-# Copy skill files
-cp SKILL.md "$SKILL_DEST/"
-cp references/*.md "$SKILL_DEST/references/"
-cp commands/alleyoop.md "$CMD_DEST/"
-cp commands/slamdunk.md "$CMD_DEST/"
+# Clean up the older no-look-pass edition if it's there
+removed=""
+for old in "$SKILLS/no-look-pass" "$CLAUDE_DIR/commands/alleyoop.md" "$CLAUDE_DIR/commands/slamdunk.md"; do
+  if [ -e "$old" ]; then rm -rf "$old"; removed="$removed\n  $old"; fi
+done
 
 echo "Installed:"
-echo "  $SKILL_DEST/SKILL.md"
-echo "  $SKILL_DEST/references/*.md"
-echo "  $CMD_DEST/alleyoop.md"
-echo "  $CMD_DEST/slamdunk.md"
+echo "  $SKILLS/checkin/SKILL.md"
+echo "  $SKILLS/claim/SKILL.md"
+[ -n "$removed" ] && printf "Removed the old no-look-pass edition:%b\n" "$removed"
 echo ""
-echo "Done! Open Claude Code in any project folder and run:"
-echo "  /alleyoop"
+echo "Done. Open Claude Code in any project folder and run:"
+echo "  /checkin"
 echo ""

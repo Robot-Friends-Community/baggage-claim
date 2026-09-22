@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "baggage-claim",
+  "version": "3.0.0",
+  "description": "Baggage Claim — the two-command context handoff for Claude Code, from Robot Friends.",
+  "owner": { "name": "Robot Friends", "url": "https://github.com/Robot-Friends-Community" },
+  "plugins": [
+    {
+      "name": "baggage-claim",
+      "description": "Two skills, one file. /checkin saves your objective, progress, decisions, blockers and next action to BAGGAGE.md; /claim restores it in a fresh session. Nothing else to configure.",
+      "version": "3.0.0",
+      "source": ".",
+      "category": "dev-tools"
+    }
+  ]
+}
